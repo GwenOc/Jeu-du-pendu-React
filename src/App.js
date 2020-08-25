@@ -1,26 +1,93 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import GuessCount from './GuessCount';
+import Riddle, {RIDDLES} from './Riddle';
+import Proposal, {ALPHABET} from './Proposal'
+import WonButton from './WonButton';
+
+
+class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      riddles: this.pickAWord(),
+      proposals: this.generateProposal(),
+      selectedLetters : [],
+      won: false
+    }
+  }
+
+  pickAWord() {   
+
+    const result = []    
+    let oneWord = Math.floor(Math.random()* RIDDLES.length)
+    oneWord = RIDDLES[oneWord]
+    const word = oneWord.split('')
+
+    while (word.length>0) {²
+      const letter = word.shift()
+      result.push(letter)
+    }
+    return result
+  }
+
+  generateProposal() {
+
+    let alphabet = [...ALPHABET.split('')]   
+
+    return alphabet
+  }
+
+  getFeedBackForLetter(letter) {
+    const{ selectedLetters } = this.state
+
+    return selectedLetters.includes(letter)
+  }
+
+  getFeedBackForGuess(riddleLetter) {
+    const {selectedLetters} = this.state  
+
+    return selectedLetters.includes(riddleLetter)
+
+  }
+
+   //arrow fx for binding
+  handleClick = letter => {
+    const{ selectedLetters } = this.state
+    this.setState({selectedLetters: [...selectedLetters,letter]})
+    console.log(selectedLetters)
+  }
+
+  render () {
+    const {riddles, proposals, won} = this.state    
+
+    return (
+      <div className="App">
+        <GuessCount guesses={0} />
+
+      <div className="riddle-container">
+        {riddles.map((riddleLetter, index) =>(
+          <Riddle letter={riddleLetter} key={index} feedback={this.getFeedBackForGuess(riddleLetter) ? 'visible' : 'hidden'}/>
+        ))}
+      </div>
+
+      
+      <div className="proposal-container">
+        
+        {proposals.map((letter, index) =>(
+          <Proposal letter={letter} key={index} feedback={this.getFeedBackForLetter(letter) ? 'red' : 'grey'} onClick={this.handleClick} />
+        ))}
+
+        <WonButton />
+        
+      </div>
+      
+      </div>
+    );
+  
+  }
 }
 
 export default App;
