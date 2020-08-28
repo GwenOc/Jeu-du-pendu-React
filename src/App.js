@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
 import './App.css';
+import Canvas from './Canvas';
 import GuessCount from './GuessCount';
 import Riddle, {RIDDLES} from './Riddle';
-import Proposal, {ALPHABET} from './Proposal'
+import Proposal, {ALPHABET} from './Proposal';
 import WonButton from './WonButton';
 
 
@@ -26,7 +27,7 @@ class App extends Component {
     oneWord = RIDDLES[oneWord]
     const word = oneWord.split('')
 
-    while (word.length>0) {²
+    while (word.length>0) {
       const letter = word.shift()
       result.push(letter)
     }
@@ -82,7 +83,10 @@ class App extends Component {
 
         <WonButton />
         
+        
       </div>
+
+      <Canvas />
       
       </div>
     );
