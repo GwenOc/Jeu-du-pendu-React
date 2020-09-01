@@ -6,6 +6,7 @@ import GuessCount from './GuessCount';
 import Riddle, {RIDDLES} from './Riddle';
 import Proposal, {ALPHABET} from './Proposal';
 import WonButton from './WonButton';
+import Lose from './Lose';
 
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
       riddles: this.pickAWord(),
       proposals: this.generateProposal(),
       selectedLetters : [],
-      won: false
+      won: false,
+      guesses: 5
     }
   }
 
@@ -42,10 +44,11 @@ class App extends Component {
   }
 
   getFeedBackForLetter(letter) {
-    const{ selectedLetters } = this.state
-
-    return selectedLetters.includes(letter)
+    const{ selectedLetters } = this.state 
+  
+    return selectedLetters.includes(letter)    
   }
+ 
 
   getFeedBackForGuess(riddleLetter) {
     const {selectedLetters} = this.state  
@@ -56,17 +59,22 @@ class App extends Component {
 
    //arrow fx for binding
   handleClick = letter => {
-    const{ selectedLetters } = this.state
-    this.setState({selectedLetters: [...selectedLetters,letter]})
-    console.log(selectedLetters)
+    const{ selectedLetters, guesses, riddles } = this.state
+
+    if(!riddles.includes(letter)) {
+      const newGuesses = guesses -1
+      this.setState({guesses: newGuesses})
+    }
+    this.setState({selectedLetters: [...selectedLetters,letter]})    
   }
 
   render () {
-    const {riddles, proposals, won} = this.state    
+    const {riddles, proposals, won, guesses} = this.state    
 
     return (
       <div className="App">
-        <GuessCount guesses={0} />
+        {guesses === 0 && <Lose />}
+        <GuessCount guesses={guesses} />
 
       <div className="riddle-container">
         {riddles.map((riddleLetter, index) =>(
@@ -79,12 +87,10 @@ class App extends Component {
         
         {proposals.map((letter, index) =>(
           <Proposal letter={letter} key={index} feedback={this.getFeedBackForLetter(letter) ? 'red' : 'grey'} onClick={this.handleClick} />
-        ))}
-
-        <WonButton />
+        ))}    
         
-        
-      </div>
+      </div>      
+      <WonButton />      
 
       <Canvas />
       
