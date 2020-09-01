@@ -1,0 +1,33 @@
+.loseWindow {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Nosifer', cursive;
+    font-size : 5em;
+    background-color: #7c9fb1;
+    position: relative;
+    top : 0px;
+    left: 0px;
+    z-index: 1000;
+    text-align : center;
+    padding: 0.8em;
+}
+
+
+.cerceuil {
+    margin-top: 0.8em;
+}
+
+.newGame {
+    font-size: 0.6em;
+    padding : 0.3em;
+    border-radius: 5%;
+    margin-top: 0.5em;
+    background-color: #6a8794;   
+    color :#293339;
+    box-shadow: -11px 16px 6px -1px rgba(41,51,57,0.8);
+    cursor: pointer;
+}
+
+.newGame:hover {
+    background-color: #a3ccdb;
+}
