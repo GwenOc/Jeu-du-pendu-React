@@ -7,3 +7,14 @@
   margin : 1.5em;
   display: flex;
 }
+
+.newGame {
+  font-size: 0.6em;
+  padding : 0.3em;
+  border-radius: 5%;
+  margin-top: 0.5em;
+  background-color: #6a8794;   
+  color :#293339;
+  box-shadow: -11px 16px 6px -1px rgba(41,51,57,0.8);
+  cursor: pointer;
+}

@@ -5,7 +5,6 @@ import Canvas from './Canvas';
 import GuessCount from './GuessCount';
 import Riddle, {RIDDLES} from './Riddle';
 import Proposal, {ALPHABET} from './Proposal';
-import WonButton from './WonButton';
 import Lose from './Lose';
 
 
@@ -16,9 +15,9 @@ class App extends Component {
     this.state = {
       riddles: this.pickAWord(),
       proposals: this.generateProposal(),
-      selectedLetters : [],
-      won: false,
-      guesses: 5
+      selectedLetters : [],      
+      guesses: 5,
+      gameStatus : 'inProgress'
     }
   }
 
@@ -57,6 +56,10 @@ class App extends Component {
 
   }
 
+  newGame = () => {
+    this.setState({riddles: this.pickAWord(), selectedLetters: [], guesses: 5, gameStatus: 'inProgress'})
+  }
+
    //arrow fx for binding
   handleClick = letter => {
     const{ selectedLetters, guesses, riddles } = this.state
@@ -69,11 +72,18 @@ class App extends Component {
   }
 
   render () {
-    const {riddles, proposals, won, guesses} = this.state    
+    const {riddles, proposals, guesses, gameStatus} = this.state  
+    
+    const RestartButton = ( <button className="newGame" onClick={this.newGame}>Rejouer?</button>)
 
     return (
       <div className="App">
-        {guesses === 0 && <Lose />}
+        {guesses === 0 && <div>
+           <Lose />
+           {RestartButton}
+           
+        </div>}
+
         <GuessCount guesses={guesses} />
 
       <div className="riddle-container">
@@ -89,8 +99,12 @@ class App extends Component {
           <Proposal letter={letter} key={index} feedback={this.getFeedBackForLetter(letter) ? 'red' : 'grey'} onClick={this.handleClick} />
         ))}    
         
-      </div>      
-      <WonButton />      
+      </div> 
+
+      <div className="wonSection">
+        C'est Gagné !
+        {RestartButton}
+      </div>     
 
       <Canvas />
       
