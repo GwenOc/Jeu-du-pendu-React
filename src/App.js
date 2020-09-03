@@ -50,10 +50,9 @@ class App extends Component {
  
 
   getFeedBackForGuess(riddleLetter) {
-    const {selectedLetters} = this.state  
+    const {selectedLetters} = this.state          
 
-    return selectedLetters.includes(riddleLetter)
-
+    return selectedLetters.includes(riddleLetter)    
   }
 
   newGame = () => {
@@ -62,17 +61,36 @@ class App extends Component {
 
    //arrow fx for binding
   handleClick = letter => {
-    const{ selectedLetters, guesses, riddles } = this.state
+    const{ guesses, riddles,selectedLetters } = this.state
 
     if(!riddles.includes(letter)) {
       const newGuesses = guesses -1
       this.setState({guesses: newGuesses})
     }
-    this.setState({selectedLetters: [...selectedLetters,letter]})    
+
+    
+    this.setState(prevState => ({
+      selectedLetters: [...prevState.selectedLetters, letter]
+    }))    
+ 
+    // this.setState({selectedLetters: [...selectedLetters,letter]})    
+
+    this.getGameStatus(riddles,selectedLetters,guesses)
+    
+  }
+
+  getGameStatus(riddles,selectedLetters,guesses) {
+    const processedRiddle = Array.from(new Set(riddles))
+    const result = selectedLetters.filter(elt => processedRiddle.includes(elt)).length === processedRiddle.length
+
+    if(guesses > 0 && result) {
+      return this.setState({gameStatus : 'win'})
+    }    
   }
 
   render () {
     const {riddles, proposals, guesses, gameStatus} = this.state  
+    const processedRiddle = Array.from(new Set(riddles))
     
     const RestartButton = ( <button className="newGame" onClick={this.newGame}>Rejouer?</button>)
 
@@ -82,10 +100,11 @@ class App extends Component {
            <Lose />
            {RestartButton}
            
+           
         </div>}
 
-        <GuessCount guesses={guesses} />
-
+        <GuessCount guesses={guesses}/>
+        
       <div className="riddle-container">
         {riddles.map((riddleLetter, index) =>(
           <Riddle letter={riddleLetter} key={index} feedback={this.getFeedBackForGuess(riddleLetter) ? 'visible' : 'hidden'}/>
@@ -101,12 +120,14 @@ class App extends Component {
         
       </div> 
 
-      <div className="wonSection">
-        C'est Gagné !
-        {RestartButton}
-      </div>     
+      {gameStatus === 'win' &&
+        <div className="wonSection">
+          C'est Gagné !
+          {RestartButton}
+        </div>  
+      }   
 
-      <Canvas />
+      <Canvas guesses={guesses} />
       
       </div>
     );
