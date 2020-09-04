@@ -1,5 +1,5 @@
 import React from 'react'
-import cerceuil from './cercueil.png';
+import cerceuil from '../img/cercueil.png';
 
 
 import './Lose.css'

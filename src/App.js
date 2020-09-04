@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 import './App.css';
-import Canvas from './Canvas';
-import GuessCount from './GuessCount';
-import Riddle, {RIDDLES} from './Riddle';
-import Proposal, {ALPHABET} from './Proposal';
-import Lose from './Lose';
+import Canvas from './component/Canvas';
+import GuessCount from './component/GuessCount';
+import Riddle, {RIDDLES} from './component/Riddle';
+import Proposal, {ALPHABET} from './component/Proposal';
+import Lose from './component/Lose';
 
 
 
