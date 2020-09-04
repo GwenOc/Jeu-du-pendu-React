@@ -8,6 +8,7 @@ import Proposal, {ALPHABET} from './Proposal';
 import Lose from './Lose';
 
 
+
 class App extends Component {
 
   constructor(props) {
@@ -66,25 +67,23 @@ class App extends Component {
     if(!riddles.includes(letter)) {
       const newGuesses = guesses -1
       this.setState({guesses: newGuesses})
-    }
-
-    
-    this.setState(prevState => ({
-      selectedLetters: [...prevState.selectedLetters, letter]
-    }))    
+    }     
  
-    // this.setState({selectedLetters: [...selectedLetters,letter]})    
-
-    this.getGameStatus(riddles,selectedLetters,guesses)
-    
+    //to fix the bug of async behaviour adding the method direct to be sure to have the correct state of the selectedLetters
+    this.setState({selectedLetters: [...selectedLetters,letter]}, () => {this.getGameStatus()})      
+ 
   }
+  
 
-  getGameStatus(riddles,selectedLetters,guesses) {
+  getGameStatus() {
+    const {guesses, riddles, selectedLetters} = this.state
+    
     const processedRiddle = Array.from(new Set(riddles))
     const result = selectedLetters.filter(elt => processedRiddle.includes(elt)).length === processedRiddle.length
 
     if(guesses > 0 && result) {
-      return this.setState({gameStatus : 'win'})
+      this.setState({gameStatus : 'win'})
+      return
     }    
   }
 
@@ -125,9 +124,7 @@ class App extends Component {
           C'est Gagné !
           {RestartButton}
         </div>  
-      }   
-
-      <Canvas guesses={guesses} />
+      }         
       
       </div>
     );
