@@ -17,23 +17,21 @@ class App extends Component {
       riddles: this.pickAWord(),
       proposals: this.generateProposal(),
       selectedLetters : [],      
-      guesses: 5,
+      guesses: 0,
       gameStatus : 'inProgress'
     }
   }
 
   pickAWord() {   
 
-    const result = []    
-    let oneWord = Math.floor(Math.random()* RIDDLES.length)
-    oneWord = RIDDLES[oneWord]
-    const word = oneWord.split('')
+    //shuffle list of words
+    const shuffeldList = RIDDLES.sort( () => 
+    Math.random() - 0.5 )
 
-    while (word.length>0) {
-      const letter = word.shift()
-      result.push(letter)
-    }
-    return result
+    //pick the first of the suffled list
+    const riddle = [...shuffeldList[0].split('')]
+
+    return riddle
   }
 
   generateProposal() {
@@ -57,7 +55,7 @@ class App extends Component {
   }
 
   newGame = () => {
-    this.setState({riddles: this.pickAWord(), selectedLetters: [], guesses: 5, gameStatus: 'inProgress'})
+    this.setState({riddles: this.pickAWord(), selectedLetters: [], guesses: 0, gameStatus: 'inProgress'})
   }
 
    //arrow fx for binding
@@ -65,7 +63,7 @@ class App extends Component {
     const{ guesses, riddles,selectedLetters } = this.state
 
     if(!riddles.includes(letter)) {
-      const newGuesses = guesses -1
+      const newGuesses = guesses +1
       this.setState({guesses: newGuesses})
     }     
  
@@ -95,7 +93,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {guesses === 0 && <div>
+        {guesses === 5 && <div>
            <Lose />
            {RestartButton}
            
@@ -118,6 +116,8 @@ class App extends Component {
         ))}    
         
       </div> 
+
+      <Canvas incorrectGuessCount={guesses} />
 
       {gameStatus === 'win' &&
         <div className="wonSection">
