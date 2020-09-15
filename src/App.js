@@ -80,24 +80,25 @@ class App extends Component {
     const result = selectedLetters.filter(elt => processedRiddle.includes(elt)).length === processedRiddle.length
 
     if(guesses > 0 && result) {
-      this.setState({gameStatus : 'win'})
-      return
+      return this.setState({gameStatus : 'win'})         
+      
     }    
   }
 
   render () {
-    const {riddles, proposals, guesses, gameStatus} = this.state  
-    const processedRiddle = Array.from(new Set(riddles))
+    const {riddles, proposals, guesses, gameStatus} = this.state      
     
     const RestartButton = ( <button className="newGame" onClick={this.newGame}>Rejouer?</button>)
 
     return (
       <div className="App">
-        {guesses === 5 && <div>
+
+        {guesses === 5 && <div className="loseWindow">
            <Lose />
-           {RestartButton}
-           
-           
+           {RestartButton}  
+           <div className="hangman-container">
+           <Canvas incorrectGuessCount={guesses} />
+           </div>
         </div>}
 
         <GuessCount guesses={guesses}/>
@@ -112,7 +113,7 @@ class App extends Component {
       <div className="proposal-container">
         
         {proposals.map((letter, index) =>(
-          <Proposal letter={letter} key={index} feedback={this.getFeedBackForLetter(letter) ? 'red' : 'grey'} onClick={this.handleClick} />
+          <Proposal letter={letter} key={index} feedback={this.getFeedBackForLetter(letter) ? 'dark' : 'light'} onClick={this.handleClick} />
         ))}    
         
       </div> 

@@ -2,13 +2,19 @@
     margin : 0.3em;
     border : 1px solid #000;
     padding : 0.2em 0.4em;
+    width: 25px;
+    text-align: center; 
+    border-radius: 15%;  
+    box-shadow: -3px 5px 6px -1px rgba(41,51,57,0.8); 
+    cursor: pointer;
 }
 
-.grey {
-    background-color: darkgray;
+.light {
+    background-color: #a3ccdb;
+    color : #292929;
 }
 
-.red {
-    background-color:  rgb(116, 18, 18);
-
+.dark {
+    background-color: #293339;
+    color: #a3ccdb;
 }

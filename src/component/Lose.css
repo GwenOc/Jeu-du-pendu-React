@@ -4,14 +4,22 @@
     font-family: 'Nosifer', cursive;
     font-size : 5em;
     background-color: #7c9fb1;
-    position: relative;
+    position: absolute;
     top : 0px;
     left: 0px;
-    z-index: 1000;
-    text-align : center;
-    padding: 0.8em;
+    z-index: 2;
+    text-align : center;    
 }
 
+.message-container {
+    margin-top: 1.5em;
+}
+
+.hangman-container {
+    position: absolute;
+    right: 150px;
+    top: 200px;
+}
 
 .cerceuil {
     margin-top: 0.8em;
@@ -26,6 +34,7 @@
     color :#293339;
     box-shadow: -11px 16px 6px -1px rgba(41,51,57,0.8);
     cursor: pointer;
+    z-index: 2;
 }
 
 .newGame:hover {
