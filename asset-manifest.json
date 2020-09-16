@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Jeu-du-pendu-React/static/css/main.d2dd4d25.chunk.css",
+    "main.js": "/Jeu-du-pendu-React/static/js/main.b3830717.chunk.js",
+    "main.js.map": "/Jeu-du-pendu-React/static/js/main.b3830717.chunk.js.map",
+    "runtime-main.js": "/Jeu-du-pendu-React/static/js/runtime-main.b501fa57.js",
+    "runtime-main.js.map": "/Jeu-du-pendu-React/static/js/runtime-main.b501fa57.js.map",
+    "static/js/2.92f707c9.chunk.js": "/Jeu-du-pendu-React/static/js/2.92f707c9.chunk.js",
+    "static/js/2.92f707c9.chunk.js.map": "/Jeu-du-pendu-React/static/js/2.92f707c9.chunk.js.map",
+    "index.html": "/Jeu-du-pendu-React/index.html",
+    "precache-manifest.6ae2cf54d2e01b4383f5af379ae0c86c.js": "/Jeu-du-pendu-React/precache-manifest.6ae2cf54d2e01b4383f5af379ae0c86c.js",
+    "service-worker.js": "/Jeu-du-pendu-React/service-worker.js",
+    "static/css/main.d2dd4d25.chunk.css.map": "/Jeu-du-pendu-React/static/css/main.d2dd4d25.chunk.css.map",
+    "static/js/2.92f707c9.chunk.js.LICENSE.txt": "/Jeu-du-pendu-React/static/js/2.92f707c9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b501fa57.js",
+    "static/js/2.92f707c9.chunk.js",
+    "static/css/main.d2dd4d25.chunk.css",
+    "static/js/main.b3830717.chunk.js"
+  ]
+}
