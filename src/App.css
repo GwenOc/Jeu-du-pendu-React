@@ -9,6 +9,10 @@
   padding: 5em 3em;
 }
 
+h1 {
+  font-size: 2em;
+}
+
 .guesscount {
   align-self: flex-start;
 }
@@ -21,14 +25,15 @@
 }
 
 .riddle-container {
-  max-width: 50%;
-  
+  max-width: 50%;  
 }
+
 
 .wonSection {
   display: flex;
   flex-direction: column;
   font-size: 1.5em;
+  margin-top : 2em;
 }
 
 .proposal-container {
@@ -45,4 +50,18 @@
   color :#293339;
   box-shadow: -11px 16px 6px -1px rgba(41,51,57,0.8);
   cursor: pointer;
+}
+
+/*Media queries*/
+@media (max-width: 576px) {
+  .proposal-container{
+    max-width: 80%;
+  }
+  .riddle-container, .clue {
+    width: 80%;
+  }
+  .guesscount {
+    align-self: center;
+    margin-bottom: 1.5em;
+  }
 }

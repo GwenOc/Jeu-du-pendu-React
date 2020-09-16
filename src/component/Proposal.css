@@ -18,3 +18,10 @@
     background-color: #293339;
     color: #a3ccdb;
 }
+
+/*Media queries*/
+@media (max-width: 576px) {
+ .proposal {
+     margin : 0px 10px 10px 0px;
+ }
+}

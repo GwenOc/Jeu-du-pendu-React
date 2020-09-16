@@ -40,3 +40,14 @@
 .newGame:hover {
     background-color: #a3ccdb;
 }
+
+/*Media queries*/
+@media (max-width: 576px) {
+    .loseWindow {
+        font-size: 2.5em;
+    }
+
+    .hangman-container {
+        display: none;
+    }
+}

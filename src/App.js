@@ -80,8 +80,7 @@ class App extends Component {
     const result = selectedLetters.filter(elt => processedRiddle.includes(elt)).length === processedRiddle.length
 
     if(guesses > 0 && result) {
-      return this.setState({gameStatus : 'win'})         
-      
+      return this.setState({gameStatus : 'win'}) 
     }    
   }
 
@@ -92,6 +91,12 @@ class App extends Component {
 
     return (
       <div className="App">
+        
+        <h1>Jeu du pendu</h1>
+
+        <GuessCount guesses={guesses}/>
+        
+        <p className="clue">Indice : En rapport avec le monde du code </p>
 
         {guesses === 5 && <div className="loseWindow">
            <Lose />
@@ -101,7 +106,6 @@ class App extends Component {
            </div>
         </div>}
 
-        <GuessCount guesses={guesses}/>
         
       <div className="riddle-container">
         {riddles.map((riddleLetter, index) =>(

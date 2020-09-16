@@ -26,5 +26,8 @@ export const RIDDLES = [
     'DESIGN',
     'DEBUG',
     'BRENDANEICH',
-    'ALGORYTHME',    
+    'ALGORYTHME',
+    'jAVASCRIPT',
+    'PROGRAMME',
+    
 ]

@@ -11,13 +11,10 @@ import './Canvas.css';
 
 /**
  * Returns an array of functions that draw each part of the Hangman on the
- * canvas, scaled according to the passed size.
- *
- * @param {Number} size
+ * canvas.
+ * * 
  */
-const getHangmanParts = size => {
-  const bodyHeight = size / 2;
-  const appendageWidth = bodyHeight / 3;
+const getHangmanParts = () => { 
 
   const firstLine = canvasContext => {
     canvasContext.lineWidth = 10;
@@ -105,7 +102,7 @@ const Canvas = ({ incorrectGuessCount = 0 }) => {
   const previousIncorrectGuessCountRef = useRef(incorrectGuessCount);
   const [size, setSize] = useState();
 
-  const hangmanParts = useMemo(() => getHangmanParts(size), [size]);
+  const hangmanParts = useMemo(() => getHangmanParts(size), [size])
 
   // Resizes the canvas based on its parent's width
   const resizeCanvas = useCallback(() => {
